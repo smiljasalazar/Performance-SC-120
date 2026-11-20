@@ -1,4 +1,4 @@
-"""Consumo de insumos SC-120 + % de láminas sobre hemogramas.
+ """Consumo de insumos SC-120 + % de láminas sobre hemogramas.
 Uso:  pip install streamlit pandas numpy openpyxl  ->  streamlit run app.py
 Carga los CSV Review_/Log_ de cada SC-120 y los Review_ de los analizadores.
 Pestaña 'Láminas por alarma': cruza láminas del SC-120 con las alarmas de los analizadores (requiere openpyxl para el Excel de revisión)."""
@@ -268,12 +268,20 @@ def parse_an2(t, exp):
     pos = lambda k: [i for i, h in enumerate(H) if h == k]
     ia = [pos(k)[-1] - len(H) if len(pos(k)) > 1 else None for k in ALC]      # índice negativo (desde el final)
     ip = {k: (pos(k) or [None])[0] for k in NUMC}
-    def pos(H, name):
-        return [i for i, h in enumerate(H)
-            if h.strip().strip('"').lower().startswith(name.lower())]
+def pos(H, name):
+    return [
+        i for i, h in enumerate(H)
+        if h.strip().strip('"').lower().startswith(name.lower())
+    ]
 
-iI, iP, iF, iH = pos('ID muestr')[0], pos('Panel pr')[0], pos('Fec')[0], pos('Hora')[0]
-    raw = []
+iI, iP, iF, iH = (
+    pos(H, 'ID muestr')[0],
+    pos(H, 'Panel pr')[0],
+    pos(H, 'Fec')[0],
+    pos(H, 'Hora')[0]
+)
+
+raw = []
     for c in R_[1:]:
         c = [x.strip() for x in c]
         m = len(c)
