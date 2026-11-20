@@ -1,4 +1,4 @@
- """Consumo de insumos SC-120 + % de láminas sobre hemogramas.
+"""Consumo de insumos SC-120 + % de láminas sobre hemogramas.
 Uso:  pip install streamlit pandas numpy openpyxl  ->  streamlit run app.py
 Carga los CSV Review_/Log_ de cada SC-120 y los Review_ de los analizadores.
 Pestaña 'Láminas por alarma': cruza láminas del SC-120 con las alarmas de los analizadores (requiere openpyxl para el Excel de revisión)."""
