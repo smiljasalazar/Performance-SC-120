@@ -269,7 +269,7 @@ def parse_an2(t, exp):
     ia = [pos(k)[-1] - len(H) if len(pos(k)) > 1 else None for k in ALC]      # índice negativo (desde el final)
     ip = {k: (pos(k) or [None])[0] for k in NUMC}
     def pos(H, name):
-    return [i for i, h in enumerate(H)
+        return [i for i, h in enumerate(H)
             if h.strip().strip('"').lower().startswith(name.lower())]
 
 iI, iP, iF, iH = pos('ID muestr')[0], pos('Panel pr')[0], pos('Fec')[0], pos('Hora')[0]
